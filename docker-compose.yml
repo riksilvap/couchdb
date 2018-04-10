@@ -1,0 +1,22 @@
+version: '3'
+services:
+  couchdb:
+    image: 'couchdb'
+    volumes:
+      - ./data:/opt/couchdb/data
+    ports:
+      - 5984:5984
+  # my-app:
+  #   image: pam79/ionic-3-framework
+  #   container_name: my-app
+  #   privileged: true
+  #   volumes:
+  #     - ./:/myApp:z
+  #     - ~/.gradle:/root/.gradle
+  #     - /dev/bus/usb:/dev/bus/usb
+  #   ports:
+  #     - 8100:8100
+  #     - 35729:35729
+  #     - 53703:53703
+  #   tty: true
+  #   stdin_open: true

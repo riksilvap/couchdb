@@ -1,14 +1,69 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Exemplo Usuário
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-input [(ngModel)]="inputSearch" (ngModelChange)="searchUsuario()"></ion-input>
+  <ion-item>
+    <ion-label>Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="usuario.nome" name="nome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Idade</ion-label>
+    <ion-input type="number" [(ngModel)]="usuario.idade" name="idade"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button icon-only (click)=getFoto()>
+      <ion-icon name="camera"></ion-icon>
+    </button>
+  </ion-item>
+  <ion-item *ngIf="usuario!=''">
+    <ion-img width="80" height="80" [(src)]="usuario.foto"></ion-img>
+  </ion-item>
+  <button ion-button round (click)="salvarUsuario()">Salvar</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Nome
+      </ion-col>
+      <ion-col>
+        Idade
+      </ion-col>
+      <ion-col>
+        Posicao
+      </ion-col>
+      <ion-col>
+        Editar
+      </ion-col>
+      <ion-col>
+        Deletar
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let usuario of usuarios">
+      <ion-col>
+        <ion-thumbnail item-left>
+          <ion-img style="width: 15vh;height: 12vh;"  src="{{usuario.foto}}"></ion-img>
+          </ion-thumbnail>
+        {{usuario.nome}}
+      </ion-col>
+      <ion-col>
+        {{usuario.idade}}
+      </ion-col>
+      <ion-col>
+        {{usuario.latitude}} x {{usuario.longitude}}
+      </ion-col>
+      <ion-col>
+        <button ion-button round (click)="editar(usuario)">Editar</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round (click)="deletar(usuario)">Deletar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
